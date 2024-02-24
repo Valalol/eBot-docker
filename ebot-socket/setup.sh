@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Check if the .installed file exists
 if [ ! -f .installed ]; then

@@ -2,7 +2,7 @@ FROM creativeprojects/php-nodejs:7.4
 
 WORKDIR /app
 
-COPY ./setup.sh .
+COPY setup.sh .
 
 RUN chmod +x setup.sh
 

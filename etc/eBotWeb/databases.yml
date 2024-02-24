@@ -7,4 +7,4 @@ all:
     param:
       dsn: "mysql:host=mysqldb;dbname=ebotv3"
       username: ebotv3
-      password: 5bbcb2cb12525f00d608b38b187f55fa
+      password: a867fd5c60177f3e5be5d7c857148c96
