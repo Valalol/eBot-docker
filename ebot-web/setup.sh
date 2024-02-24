@@ -15,7 +15,9 @@ if [ ! -f .installed ]; then
 
     php symfony cc
 
-    php symfony doctrine:build --all --no-confirmation
+    php symfony doctrine:build --all <<EOF
+y
+EOF
 
     php symfony guard:create-user --is-super-admin $EBOT_ADMIN_EMAIL $EBOT_ADMIN_LOGIN $EBOT_ADMIN_PASSWORD
 
