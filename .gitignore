@@ -2,6 +2,3 @@
 data/
 *.bak
 .env
-*.log
-etc/eBotWeb/*.yml
-etc/eBotSocket/*.ini
