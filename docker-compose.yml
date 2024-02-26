@@ -52,5 +52,16 @@ services:
         restart: always
         volumes:
             - ./data/redis:/data
+    nginx:
+        image: nginx:alpine
+        volumes:
+            - "./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+            - "eBotWebVolume:/app/eBot-CSGO-Web"
+        ports:
+            - "80:80"
+        restart: always
+        depends_on:
+            - ebot-web
+            - mysqldb
 volumes:
     eBotWebVolume:
