@@ -52,8 +52,8 @@ services:
         volumes:
             - "./data/db/mysql:/var/lib/mysql"
         healthcheck:
-            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-            timeout: 20s
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+            timeout: 15s
             retries: 10
     redis:
         image: redis:alpine
