@@ -14,7 +14,8 @@ services:
             - "./etc/eBotWeb/app_user.yml:/app/eBot-CSGO-Web/config/app_user.yml"
             - "./etc/eBotWeb/databases.yml:/app/eBot-CSGO-Web/config/databases.yml"
         depends_on:
-            - mysqldb
+            - mysqldb:
+                condition: service_healthy
     ebot-socket:
         build:
             context: ./ebot-socket
@@ -25,7 +26,8 @@ services:
             - "./ebot-demos:/app/eBot-CSGO/demos"
             - "./etc/eBotSocket/config.ini:/app/eBot-CSGO/config/config.ini"
         depends_on:
-            - mysqldb
+            - mysqldb:
+                condition: service_healthy
             - ebot-web
             - redis
     ebot-logs-receiver:
@@ -47,6 +49,10 @@ services:
             - MYSQL_PASSWORD
         volumes:
             - "./data/db/mysql:/var/lib/mysql"
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 20s
+            retries: 10
     redis:
         image: redis:alpine
         restart: always
@@ -62,6 +68,7 @@ services:
         restart: always
         depends_on:
             - ebot-web
-            - mysqldb
+            - mysqldb:
+                condition: service_healthy
 volumes:
     eBotWebVolume:
